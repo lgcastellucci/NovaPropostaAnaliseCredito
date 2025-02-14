@@ -1,0 +1,57 @@
+﻿@model NovaPropostaAnaliseCredito.Models.ProposalModel
+
+<div class="text-center">
+    <h1 class="display-4">Coletar codigo validador</h1>
+</div>
+
+<div class="form-group">
+    <label for="proposta">Proposta</label>
+    <input type="text" class="form-control" id="proposta" name="Proposta" value="@Model.iniciaPropostaResponse.Proposta" readonly>
+</div>
+
+<div class="form-group">
+    <br />
+</div>
+
+<!-- Formulário para coletar o código validador -->
+<form asp-action="SubmitCodigoValidador" method="post">
+    <input type="hidden" name="ProposalJson" value='@ViewBag.ProposalJson' />
+    <div class="form-group">
+        <label for="codigoValidador">Codigo Validador</label>
+        <input type="text" class="form-control" id="codigoValidador" name="codigoValidador" value=@Model.codigoValidador required>
+    </div>
+    <div class="form-group">
+        <br />
+    </div>
+    <div class="form-group d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+</form>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+<!-- Formulário para exibir e alterar o celular -->
+<form asp-action="SubmitAlteraCelular" method="post">
+
+    <div class="form-group">
+        <label>Se desejar, altere o telefone:</label>
+    </div>
+    <div class="form-group">
+        <br />
+    </div>
+    <input type="hidden" name="ProposalJson" value='@ViewBag.ProposalJson' />
+    <div class="form-group">
+        <label for="phone">Celular</label>
+        <input type="text" class="form-control" id="phone" name="phone" value="@Model.phone">
+    </div>
+    <div class="form-group">
+        <br />
+    </div>
+    <div class="form-group d-flex justify-content-end">
+        <button type="submit" class="btn btn-secondary">Alterar Celular</button>
+    </div>
+</form>

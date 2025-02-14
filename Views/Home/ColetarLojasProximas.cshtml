@@ -1,0 +1,34 @@
+﻿@model NovaPropostaAnaliseCredito.Models.ProposalModel
+
+<div class="text-center">
+    <h1 class="display-4">Coletar Lojas Proximas</h1>
+</div>
+
+<form asp-action="SubmitLojasProximas" method="post">
+    <input type="hidden" name="ProposalJson" value='@ViewBag.ProposalJson' />
+
+    <div class="form-group">
+        @if (Model.lojasProximasResponse?.Estabelecimentos != null && Model.lojasProximasResponse.Estabelecimentos.Any())
+        {
+            <label for="lojaSelect">Selecione uma loja:</label>
+            <select class="form-control" id="codEstabelecimentoProximo" name="CodEstabelecimentoProximo">
+                @foreach (var loja in Model.lojasProximasResponse.Estabelecimentos)
+                {
+                    <option value="@loja.CodEstabelecimento">
+                        @loja.Descricao - @loja.Endereco.Logradouro, @loja.Endereco.Numero, @loja.Endereco.Bairro, @loja.Endereco.Municipio - @loja.Endereco.UF
+                    </option>
+                }
+            </select>
+        }
+        else
+        {
+            <p>Nenhuma loja encontrada.</p>
+        }
+    </div>
+    <div class="form-group">
+        <br />
+    </div>
+    <div class="form-group d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+</form>

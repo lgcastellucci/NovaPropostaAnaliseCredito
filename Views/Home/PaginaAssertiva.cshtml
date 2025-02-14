@@ -1,0 +1,29 @@
+﻿@model NovaPropostaAnaliseCredito.Models.ProposalModel
+
+<div class="text-center">
+    <h1 class="display-4">Pagina Assertiva - Validar dados</h1>
+</div>
+
+<div class="container">
+    <form asp-action="SubmitPaginaAssertiva" method="post">
+        <input type="hidden" name="ProposalJson" value='@ViewBag.ProposalJson' />
+
+        <div class="form-group">
+            <label for="proposta">Proposta</label>
+            <input type="text" class="form-control" id="proposta" name="Proposta" value="@Model.iniciaPropostaResponse.Proposta" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="assertivaPedidoID">Assertiva ID</label>
+            <input type="text" class="form-control" id="assertivaPedidoID" name="assertivaPedidoID" value=@Model.assertivaPedidoID required>
+        </div>
+
+        <div class="form-group">
+            <br />
+        </div>
+
+        <div class="form-group d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </form>
+</div>

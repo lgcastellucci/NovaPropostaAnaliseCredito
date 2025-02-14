@@ -1,0 +1,43 @@
+﻿@model NovaPropostaAnaliseCredito.Models.ProposalModel
+
+<div class="text-center">
+    <h1 class="display-4">Coletar vencimento e local de entrega</h1>
+</div>
+
+<div class="container">
+    <form asp-action="SubmitVenctoEntrega" method="post">
+        <input type="hidden" name="ProposalJson" value='@ViewBag.ProposalJson' />
+
+        <div class="form-group">
+            <label for="proposta">Proposta</label>
+            <input type="text" class="form-control" id="proposta" name="Proposta" value="@Model.iniciaPropostaResponse.Proposta" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="vencimentosDia">Vencimentos Dia</label>
+            <select class="form-control" id="vencimentosDia" name="VencimentosDia">
+                @foreach (var dia in Model.iniciaPropostaResponse.VencimentosDia)
+                {
+                    <option value="@dia">@dia</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="locaisEntrega">Locais de Entrega</label>
+            <select class="form-control" id="codEstabelecimentoEntrega" name="CodEstabelecimentoEntrega">
+                @foreach (var local in Model.iniciaPropostaResponse.LocaisEntrega)
+                {
+                    <option value="@local.CodEstabelecimento">@local.Descricao - @local.Endereco.Logradouro, @local.Endereco.Numero</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <br />
+        </div>
+        <div class="form-group d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </form>
+</div>
